@@ -23,8 +23,7 @@ class ResetPasswordPage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             SizedBox(
-              width: 200,
-              height: 200,
+              height: 100,
             ),
             SizedBox(
               height: 20,

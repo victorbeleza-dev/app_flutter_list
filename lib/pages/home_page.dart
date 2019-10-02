@@ -62,17 +62,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: TextFormField(
           controller: newTaskCtrl,
           keyboardType:  TextInputType.text,
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black38,
+            fontWeight: FontWeight.w400,
             fontSize: 18,
           ),
           decoration: InputDecoration(
             labelText: "New Task",
             labelStyle: TextStyle(
-              color: Colors.white,
+              color: Colors.black38,
             )
           ),
         ),
@@ -82,40 +84,55 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (ctxt, index ){
         final item = widget.items[index];
         return Dismissible(
-          child: CheckboxListTile(
-            title: Text(item.title),
-            key: Key(item.title),
-            value: item.done,
-            onChanged: (value) {
-              setState(() {
-                item.done = value;
-                save();
+          child: Card(
+            child: CheckboxListTile(
+              title: Text(item.title),
+              key: Key(item.title),
+              value: item.done,
+              onChanged: (value) {
+                setState(() {
+                  item.done = value;
+                  save();
+                },
+                );
               },
-              );
-            },
+            ),
             ),
           key: Key(item.title),
-          background: Container(
-            color: Colors.red.withOpacity(0.9),
-            child: Text(
-                "Excluir",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-             ),
-            ),
-          ),
           onDismissed: (direction){
             remove(index);
           },
-          );
+        );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: add,
-        child: Icon(Icons.add),
-        backgroundColor: Colors.greenAccent,
-      ),
-    );
+        onPressed: (){
+            add();
+        },
+        child: Container(
+          height: 60,
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 36.0,
+          ),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.3, 1],
+                colors: [
+                  Color(0xFFF58524),
+                  Color(0XFFF92B7F),
+                ],
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
+              )
+          ),
+          ),
+        ),
+      );
   }
 }
