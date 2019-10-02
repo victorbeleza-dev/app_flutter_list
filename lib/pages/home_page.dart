@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               borderRadius: BorderRadius.all(
-                Radius.circular(30),
+                Radius.circular(31),
               )
           ),
           ),
