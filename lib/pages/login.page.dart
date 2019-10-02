@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/home_page.dart';
+import 'package:flutter_app/pages/reset-password-page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              FlutterLogo(
+                size: 120,
+              ),
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 style: TextStyle(
@@ -58,7 +63,14 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(
                     "Recuperar Senha",
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                    MaterialPageRoute(
+                      builder: (context) => ResetPasswordPage()
+                    ),
+                    );
+                  },
                 ),
               ),
               SizedBox(
@@ -97,7 +109,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage()
+                        ),
+
+                      );
+                    },
                   ),
                 ),
               ),
