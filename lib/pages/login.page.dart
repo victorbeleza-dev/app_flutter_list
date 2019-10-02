@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/home_page.dart';
 import 'package:flutter_app/pages/reset-password-page.dart';
+import 'package:flutter_app/pages/sing_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -115,10 +116,26 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialPageRoute(
                             builder: (context) => HomePage()
                         ),
-
                       );
                     },
                   ),
+                ),
+              ),
+              Container(
+                height: 40,
+                alignment: Alignment.center,
+                child: FlatButton(
+                  child: Text(
+                    "Cadastre-se",
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SingUpPage()
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
