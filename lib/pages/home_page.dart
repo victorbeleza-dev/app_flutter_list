@@ -9,7 +9,9 @@ class HomePage extends StatefulWidget {
   HomePage(){
     items = [];
   }
-  _HomePageState createState() => _HomePageState();
+  _HomePageState createState(){
+    return _HomePageState();
+  }
 }
 
 class _HomePageState extends State<HomePage> {
@@ -19,10 +21,10 @@ class _HomePageState extends State<HomePage> {
     if(newTaskCtrl.text.isEmpty) return;
     setState(() {
       widget.items.add(
-          Item(
-              title: newTaskCtrl.text,
-              done: false,
-          ),
+        Item(
+          title: newTaskCtrl.text,
+          done: false,
+        ),
       );
       newTaskCtrl.text = "";
       save();
@@ -48,12 +50,12 @@ class _HomePageState extends State<HomePage> {
       });
     }
   }
-  
+
   save() async{
     var prefs = await SharedPreferences.getInstance();
     await prefs.setString('data', jsonEncode(widget.items));
   }
-  
+
   _HomePageState(){
     load();
   }
@@ -72,42 +74,42 @@ class _HomePageState extends State<HomePage> {
             fontSize: 18,
           ),
           decoration: InputDecoration(
-            labelText: "New Task",
-            labelStyle: TextStyle(
-              color: Colors.black38,
-            )
+              labelText: "New Task",
+              labelStyle: TextStyle(
+                color: Colors.black38,
+              )
           ),
         ),
       ),
       body: ListView.builder(
-      itemCount: widget.items.length,
+        itemCount: widget.items.length,
         itemBuilder: (ctxt, index ){
-        final item = widget.items[index];
-        return Dismissible(
-          child: Card(
-            child: CheckboxListTile(
-              title: Text(item.title),
-              key: Key(item.title),
-              value: item.done,
-              onChanged: (value) {
-                setState(() {
-                  item.done = value;
-                  save();
+          final item = widget.items[index];
+          return Dismissible(
+            child: Card(
+              child: CheckboxListTile(
+                title: Text(item.title),
+                key: Key(item.title),
+                value: item.done,
+                onChanged: (value) {
+                  setState(() {
+                    item.done = value;
+                    save();
+                  },
+                  );
                 },
-                );
-              },
+              ),
             ),
-            ),
-          key: Key(item.title),
-          onDismissed: (direction){
-            remove(index);
-          },
-        );
+            key: Key(item.title),
+            onDismissed: (direction){
+              remove(index);
+            },
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-            add();
+          add();
         },
         child: Container(
           height: 60,
@@ -131,8 +133,8 @@ class _HomePageState extends State<HomePage> {
                 Radius.circular(31),
               )
           ),
-          ),
         ),
-      );
+      ),
+    );
   }
 }
